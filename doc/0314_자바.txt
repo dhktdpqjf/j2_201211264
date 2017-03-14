@@ -1,0 +1,80 @@
+3/14 자바
+
+1_hello_goodsw
+
+SRP Single Responsbility Principle 
+-응집성.  하나에 다 때려넣지 말고 하나에 한 개만 넣는 것.
+
+OCP Open Closed Principle
+- 확장에는 Open (상속), 수정에는 Closed(국지화)
+
+
+
+
+
+
+REPL read evaluate prl..... loop
+
+
+
+
+
+cmd에서 컴파일하기
+javac -d classes\ -cp lib\aplu5.jar -sourcepath src\ src\com\sd\turtle\WeightTurtleMain.java 
+
+
+
+
+
+Turtle tOFwt = new WeightTurtle(10); -> new WeightTurtle 할 때,
+	import com.sd.turtle.WeightTurtle; ->이미 이렇게 해서 네임스페이스 채울 필요 없음
+
+
+
+
+
+tOFwt.getWeight();
+	Static Error: No method in Turtle has name 'getWeight' -> 에러 남. downcasting해서 WeightTurtle로 돌아가면 쓸 수 있음.
+
+
+
+
+
+
+downcasting 시도 --->근데 안 됨
+
+> (WeightTurtle).tOFwt.getWeight();
+Static Error: Undefined name 'WeightTurtle'
+> ((WeightTurtle)tOFwt).getWeight();
+> 
+> ((WeightTurtle).tOFwt).getWeight();
+Static Error: Undefined name 'WeightTurtle'
+> (WeightTurtle)tOFwt.getWeight();
+Static Error: No method in Turtle has name 'getWeight'
+> (WeightTurtle)(tOFwt).getWeight();
+Static Error: No method in Turtle has name 'getWeight'
+> ((WeightTurtle)tOFwt).getWeight();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
