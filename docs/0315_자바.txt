@@ -1,0 +1,92 @@
+0315 자바
+
+
+uml그리기 (planttext.com)
+
+1 클래스다이어그램
+
+class Turtle {
+    +bk()
+    +fd()
+    +left()
+    +right()
+    +penUp()
+    +penDown()
+}
+
+class WeightTurtle{
+    #weight : int
+    +WeightTurtle()
+    +getWeight() : int
+}
+
+Turtle <|--left WeightTurtle
+
+
+<tip>
+
+Turtle <|- WeightTurtle  이렇게 하면 화살표 생김
+Turtle <|-- WeightTurtle   위치를 좀 더 확실하게 잡아줌
+Turtle <|--left WeightTurtle 이렇게 하면 위치를 명확히 말해줌
+
+
+-------------------------------
+
+
+2 시퀀스 다이어그램
+
+package com.sd.turtle;
+
+import java.awt.Color;
+import ch.aplu.turtle.*;
+
+public class WeightTurtleMain {
+    public static void main(String[] args) {
+        WeightTurtle wt=new WeightTurtle(10);
+        System.out.println("Hello weight turtle");
+        wt.addStatusBar(30);
+        String msg="Hello I weigh "+wt.getWeight()+" kg.";
+        wt.setStatusText(msg);
+    }
+}
+
+이 코드를 가지고 만듦--->>>
+
+client -> WeightTurtle:new():wt
+client -> PrintStream:println()
+client -> WeightTurtle:addStatusBar(30)
+client -> String:new("Hello.."):msg
+client -> WeightTurtle:setStatusText(msg)
+
+  <해석>
+client -> server 라고 돼있을 때 -> 는 call(호출한다)라고 한다.
+
+client -> WeightTurtle:new():wt     WeightTurtle 인스턴스 wt를 생성
+client -> PrintStream:println()     프린트스트림 클래스에서 프린트라인 함수를 호출
+client -> WeightTurtle:addStatusBar(30)
+client -> String:new("Hello.."):msg     java.lang 클래스의 String 클래스를 생성. 이름은 msg
+client -> WeightTurtle:setStatusText(msg)
+
+
+
+
+----------------------------------
+기억해두기
+
+SOLID (Martin, R. C., "Design principles and design patterns",2000, objectmentor.com)
+
+	원칙	설명
+
+	SRP	Single Responsibility Principle
+	OCP	Open Closed Principle
+	LSP	Liskov Substitution Principle
+	ISP	Interface Segregation Principle
+	DIP	Dependency Inversion Principle
+
+
+
+
+
+
+
+
