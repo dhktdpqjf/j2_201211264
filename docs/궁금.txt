@@ -1,0 +1,10 @@
+javac -d classes\ -cp lib\aplu5.jar -sourcepath src\ inSRC.java
+
+//이렇게 했을 때, inSRC파일은 그냥 폴더에 있거나 src폴더에 있거나 상관없이
+ WeightTUrtle 파일이 src밑에 있으면 실행 됨. 즉 클래스 폴더에
+inSRC.class와 WeightTurtle.class가 둘 다 생성됨 
+
+--> 왜?? src\가 왜 꼭 있어야 하며, 왜 WeightTurtle 파일만 src밑에 있어도 
+실행이 되는지?
+
+
