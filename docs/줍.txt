@@ -1,0 +1,25 @@
+class Duck{
+    -field1
+    +swim()
+    +display()
+}
+
+Duck <|-- MallardDuck
+Duck <|-- RedHeadDuck
+Duck <|-- RubberDuck
+Duck <|-- DecoyDuck
+
+interface Flyable{
+    +fly()
+}
+
+interface Quackable{
+    +quack()
+}
+
+Flyable <|.. MallardDuck
+Flyable <|.. RedHeadDuck
+
+Quackable <|.. MallardDuck
+Quackable <|.. RubberDuck
+Quackable <|.. RedHeadDuck

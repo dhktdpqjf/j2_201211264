@@ -1,0 +1,145 @@
+
+Policy pattern : 알고리즘
+**실행 시점 : subfile을 가지고 와서 사용하는 것이 다형성. (실행시점에 객체를 바꿔치기할 수 있는 특성 : 다형성)
+비객체지향에서는 실행시점, 알고리즘 사용X. 객체나 함수를 바꿔치기 할 수 X. 예-라면 끓이는 법. (사람마다 다름)
+
+ 파일의 압축방법이 다르면 프로그래밍 방법이 다름. ->전략이다 전략!!
+ 객체지향에서는 if문 대신 다형성 사용!
+ 객체지향에서는 상속&다형성이 very very important**
+ pattern -> framework(swing fraemework, spring framework 등)
+ 디자인패턴 구성요소 4가지** 명세할 수 있어야 함.
+
+
+context : 컴파일 할 떄는 카드가 안 올라와있고, 실행시점에 카드를 올려놓았을 때 카드를 골라서 쓰는 ticket box 직원.
+
+속성이 필요한 상속 : 클래스 상속
+속성이 필요없는 상속 : 인터페이스 상속
+
+ *uml<=>코딩 round trip engineering 가능해야함. 
+(uml->코딩 forward engineering, uml<-코딩 reverse engineering역공학) 
+
+
+
+https://github.com/bethrobson/Head-First-Design-Patterns
+여기에 소스파일 있음
+
+
+
+<<planttext>>   전략패턴 그리기
+
+* <|..  코드에서 implements 쓸 때
+
+------------------------------
+class Strategy1{
+    +execute1()
+}
+class Strategyn{
+    +executen()
+}
+interface Strategy
+
+Strategy <|.. Strategy1
+Strategy <|.. Strategyn
+
+class Context{
+    -Strategy : s  //Context가 Strategy를 콜하는 방법. 변수로 사용한다. 전화번호는 나만 알아야 되닌까 private
+    setStrategy(s: Strategy):void //여기있는 s는 Strategy1또는 Stategyn 둘 다 받을 수 있다. super class로 매핑
+    +executeStrategy()
+}
+
+Context ->Strategy
+
+---------------------------------
+class Strategy1{
+    +execute1()
+}
+class Strategyn{
+    +executen()
+}
+interface Strategy
+
+//원래 이거였는데  
+
+
+class Strategy1{
+    +execute()
+}
+class Strategyn{
+    +execute()
+} 
+interface Strategy{
+    +excute()
+}
+
+
+//이렇게 바꿔야 좋다.
+
+서로 다른 Strategy 알고리즘이 존재하고, super class에서 상속받고? ....
+...............
+
+
+------최종----------
+
+class Strategy1{
+    +execute()
+}
+class Strategyn{
+    +execute()
+} 
+interface Strategy{
+    +excute()
+}
+
+Strategy <|.. Strategy1
+Strategy <|.. Strategyn
+
+class Context{
+    -Strategy : s
+    +setStrategy(s: Strategy):void
+    +executeStrategy()
+}
+
+Context ->Strategy
+
+
+------------------------------------
+
+class Duck{ //여기서는 Duck이 Context 
+    FlyBehavior
+}
+
+Interface FlyBehavior
+class FlyWithWings
+class FlyRocketPowered
+
+FlyBehavior <|.. FlyWithWings
+FlyBehavior <|.. FlyRocketPowered
+
+Duck ->FlyBehavior
+
+
+-----------하다 말음--------------
+
+
+
+
+----------닥터자바에 코딩--- 내일 인터페이스도 작성할 것
+
+package headfirst.strategy;
+
+public abstract class Duck {
+  FlyBehavior f;
+  public void setFlyBehavior(FlyBehavior f){
+    f = this.f;
+  }
+    
+  public void performFly(){
+    f.fly();
+  }
+  
+}
+
+
+
+
+
