@@ -1,0 +1,76 @@
+
+
+
+분리했을 때 관계 또는 연관을 생각해야 하는데, 상속은
+  --|> 클래스 상속
+  ..|> 인터페이스 상속
+이렇게 두가지고 연관(=call)은
+  ->  
+  <-  
+이렇게 표시. 단기는 .. local 
+	     장기는 -- 속성
+
+
+
+ 원래는 
+
+class Duck{
+    fly()
+    quack()
+}
+
+ 이렇게 가졌는데, 
+
+class Duck{
+    fly()
+    -quackBehavior:QuackBehavior  //-는 가시성을 자기만본다는 것
+    +setQuackBehavior(QackBehavior:q)   //인자에 super class를 넣어야 함. runtime 할 때 호출.
+    +performQuack()
+}
+
+ fly()도 마찬가지로 하면됨.
+
+
+class Duck{
+    -quackBehavior:QuackBehavior
+    +setQuackBehavior(QackBehavior:q)
+    +performQuack()
+    fly()
+}
+
+class ModelDuck
+
+class MallardDuck
+
+Duck <|-- ModelDuck 
+Duck <|-- MallardDuck
+
+interface QuackBehavior{
+    quack()
+}
+
+Duck -> QuackBehavior
+
+class Quack
+QuackBehavior <|..Quack
+
+
+----------
+
+클래스는 계층적 구조를 가지는데 상위클래스로 갈수록 변화없이 안전하게 쓸 수 있도록 구현해야함
+Duck mallard = new MallardDuck(); //이렇게 쓰는 것이 좋음.
+
+
+
+클래스는 항상 하드디스크에 있고, 인스턴스는 존재X. 인스턴스는 생성자를 만들 때 메모리에 올라오게 되는데, 이때 어떻게 생성하느냐가 중요!!
+생성자가 즉 객체를 메모리에 인스턴스로 올릴 때 쓰는 거라, 생성자가 메모리에 영향을 준다. 신경쓸 것!!
+
+
+
+
+
+
+
+
+
+
