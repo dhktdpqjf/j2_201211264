@@ -4,11 +4,11 @@ public class MallardDuck extends Duck{
   
   public MallardDuck() {
     //flyBehavior = new FlyWithWings();
-    setFlyBehavior(new FlyWithWings());
+    setFlyBehavior(new FlyRocketPowered());
     setQuackBehavior(new Quack());
   }
   
   public void display(){
-    System.out.println("mallard!!!");
+    System.out.println("mallard...");
   }   
 }

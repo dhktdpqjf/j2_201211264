@@ -16,6 +16,7 @@ public abstract class Duck {
  }
  
  abstract void display(); //함수 하나이상이 abstract이면 클래스가 abstract임
+//나중에 Duck을 상속받는 클래스가 있다면 반드시 이 함수를 디테일하게 구현해야함.
  
  public void performFly() {
   flyBehavior.fly();
@@ -29,6 +30,4 @@ public abstract class Duck {
   System.out.println("All ducks float, even decoys!");
  }
  
- public static void main (String[] args){
- }
 }
