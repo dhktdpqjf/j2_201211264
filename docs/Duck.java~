@@ -1,4 +1,0 @@
-package headfirst.strategy;
-
-public abstract class Duck{
-}
