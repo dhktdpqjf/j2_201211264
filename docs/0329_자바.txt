@@ -1,0 +1,97 @@
+v2가 strategy패턴인 이유: Context switch하는 게 있어야 strategy패턴임
+
+strategy pattern =behavioral
+
+
+
+//Sorter에서 이 부분 주목
+if(comp.compare(data[j], data[indexOfMax]) > 0)
+
+//이 부분을 부르는 함수는 위에 SorterMainV2에서
+
+Sorter.sort(wts, turtleComp);
+
+Comparator turtleComp=new TurtleComparator(); //이 부분에서 컴파일할 때는 COmparator로 올라감.
+
+//Sorter 에서
+public static void sort(Object[] data, Comparator comp) //그래서 여기서 인자가 comparator. 하지만 런타임할 때는 integer로 올라감. 컴파일과 런타임할 때의 전략이 바뀌기 때문에 strategy pattern임!
+
+
+
+-------------------------------------------------
+
+디자인패턴 세 가지 : behavioral(행태), structural(구조), creational(생성)
+
+
+
+
+'poll'은 그 서비스가 필요한 사용자가 지속적으로 문의를 해야 하는 것이고, 반대를 push라고 한다.
+wake-up service는 push에 해당
+
+client가 service 요청하는것 poll
+service가 client에게 반응하는 것 push
+
+
+
+
+디자인패턴 요소 -디자인패턴 설명할 때 가지고 말하면 됨
+
+name 		Observer 
+problem 	1:n관계에서의 정보 갱신 
+solution 	정보사용자를 등록하고, 정보가 변동하는 경우 알려줌. 
+consequence 	loose coupling, 확장성 
+
+
+
+-----------------------------------
+
+<planttext>
+
+
+
+interface IObserver {
+    +update(o:Observer, arg:Object):void
+}
+
+interface IObservable{
+    +addObserver(o:Observer):void
+    +removeObserver(o:Observer):void
+    +notifyObservers(arg:Object):void
+}
+
+IObserver<--right IObservable
+IObservable <|..WeatherData
+IObserver<|..BroadcastingCompanyDisplay
+WeatherData<..left BroadcastingCompanyDisplay
+
+
+
+----------------------------
+
+
+JButton에 Event가 발생하면 ActionEvent로 변경내용을 넣고, ActionListener가 사용
+//button이 신문사, actionlistener가 구독자. 알려주는 것은 버튼이 눌렸는지아닌지
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
