@@ -1,0 +1,54 @@
+actionPerformed(e:ActionEvent):void 
+//여기에서 버튼을 누른 걸 어떻게 아냐 하면 위로 올라가서 EventObject의 getSouce()가 판명. 
+//어느 버튼인지 아는 거는 ACtionEvent에 있는 getActionCommand()
+
+
+
+Out[10]  부분 planttext
+
+interface Subject{
+
+    +registerObserver(o:Observer):void
+    +removeObserver(o:Observer):void
+    +notifyObservers():void
+}//이렇게 놓으면 인터페이스 서브젝트이고
+
+
+interface Subject{
+    //여기에 Observer를 arraylist로 가지고 있으면 interface가 아니라 class가 됨
+    +registerObserver(o:Observer):void
+    +removeObserver(o:Observer):void
+    +notifyObservers():void
+}
+
+
+
+완성 uml
+
+interface Subject{
+
+    +registerObserver(o:Observer):void
+    +removeObserver(o:Observer):void
+    +notifyObservers():void
+}
+
+interface Observer{
+    +update(t:float,h:float,p:float):void
+}
+
+Subject <|.. WeatherData
+
+Observer <|..CurrentConditionsDisplay
+WeatherData <- CurrentConditionsDisplay
+Observer <..right Subject
+
+interface DisplayElement{
+    +display():void
+}
+
+DisplayElement<|..CurrentConditionsDisplay
+
+
+
+
+
