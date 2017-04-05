@@ -11,6 +11,8 @@ public class WeightTurtle extends Turtle {
         setPenColor(Color.red);
     }
     public int getWeight() {
-        return weight;
+        
+	return weight;
+	
     }
 }
