@@ -1,6 +1,6 @@
 package com.sd.sort.v2;
-
-public class Sorter {
+import java.util.*;
+class Sorter {
   public Sorter() {}
     public static void sort(Object[] data, Comparator comp) {
         for(int i=data.length-1; i>=1; i--) {
