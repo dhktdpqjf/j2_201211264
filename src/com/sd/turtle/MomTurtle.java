@@ -6,7 +6,7 @@ import java.util.Observable;
 import java.awt.geom.Point2D.Double;
 
 public class MomTurtle extends Turtle implements Observer{
-  Double babyCurpos; //doubleÀÇ wrapperclassÀÓ. ¾ê´Â (x,y)ÀÇ ÇüÅÂÀÓ.
+  Double babyCurpos; //doubleì˜ wrapperclassì„. ì–˜ëŠ” (x,y)ì˜ í˜•íƒœì„.
   
   public MomTurtle(){
     setColor("yellow");
@@ -14,10 +14,10 @@ public class MomTurtle extends Turtle implements Observer{
   }
   
   public void update(Observable o, Object arg){
-    //Object arg´Â ¼ıÀÚ, ¹®ÀÚ ´Ù »ó°ü¾øÀ½. ÇÁ¸°Æ®ÇØÁàµµ µÇ°í ¾È ÇØµµ µÊ. ¹«ÀÇ¹Ì
+   
     System.out.println("updated");
     babyCurpos = ((BabyTurtle)o).myCurpos;
-    moveTo(babyCurpos);//moveTo´Â Turtle¿¡ ÀÖ´Â ¾Ö.
+    moveTo(babyCurpos);//moveToëŠ” Turtleì— ìˆëŠ” ì• .
   }  
 }
     
