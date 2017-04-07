@@ -6,10 +6,9 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
   public CurrentConditionsDisplay(Subject w){
     this.weatherData =w;
   }
-  /*¼÷Á¦
+  
   StatisticsDisplay statisticsDisplay = new StatisticsDisplay(weatherData);
   ForecastDisplay forecastDisplay = new ForecastDisplay(weatherData);
-*/
   
   public void update(float temp, float humidity, float pressure){
     this.temperature= temp;
