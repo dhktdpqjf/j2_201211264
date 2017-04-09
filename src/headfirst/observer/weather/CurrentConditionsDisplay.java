@@ -1,20 +1,23 @@
 package headfirst.observer.weather;
 
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
-  private float temp;
+  private float temperature;
+  private float humidity;
+  Subject weatherData;
   
   public CurrentConditionsDisplay(Subject w){
     this.weatherData =w;
+    weatherData.registerObserver(this);
   }
   
-  StatisticsDisplay statisticsDisplay = new StatisticsDisplay(weatherData);
-  ForecastDisplay forecastDisplay = new ForecastDisplay(weatherData);
-  
-  public void update(float temp, float humidity, float pressure){
-    this.temperature= temp;
+  public void update(float temperature , float humidity, float pressure){
+    this.temperature= temperature;
+    this.humidity = humidity;
+    display();
   }
   public void display(){
-    
+    System.out.println("Current conditions: " + temperature 
+   + "F degrees and " + humidity + "% humidity");
   }
 }
   
