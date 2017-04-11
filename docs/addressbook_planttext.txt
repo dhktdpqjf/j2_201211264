@@ -1,0 +1,24 @@
+interface Observer {
+    +update(o:Observer, arg:Object):void
+}
+
+interface Subject{
+    +registerObserver(o:Observer):void
+    +removeObserver(o:Observer):void
+    +notifyObservers(arg:Object):void
+}
+interface DisplayAttribute{
+    +display():void
+}
+
+Observer<--right Subject
+Subject <|..AddressData
+Observer<|..AddressBook
+DisplayAttribute<|..AddressBook
+
+interface BlindData{
+    +blind(String name):void;
+    +s:getData();
+ }
+BlindData<|..BlindAddress
+BlindData<|.. BlindNum
