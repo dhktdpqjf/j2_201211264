@@ -1,0 +1,69 @@
+
+
+ripple effect - 소스코드는 maintainability 수정용이성 이 있어야 함. 
+		연쇄수정이 없는 소스코드** 굉장히 유용
+
+DIP 원칙
+
+valueof() - 문자열에 숫자가 있을 때 이거를 뽑아서 인티져로 만들 수 있게 함. 
+		그래서 factory랑 관련이 있음
+
+getInstance() - 
+	Twitter t = new Twitter() //일반적인 생성
+	Twitter t = getInstance() //getInstance를 이용한 생성
+
+
+http://www.jhotdraw.org 
+
+
+<Planttext>
+
+class ConcreteProduct
+client ->Product
+Product<|-ConcreteProduct
+
+//원래 이런 구조였는데
+
+class ConcreteProduct
+client ->Creator
+Product<|--ConcreteProduct
+class ConcreteCreator
+ConcreteCreator -->ConcreteProduct
+class Creator
+Creator<|--ConcreteCreator
+
+//요렇게 쓰면 됨
+
+
+
+<Planttext> - PizzaFactory 
+
+
+class SimplePizzaFactory{
+    +createPizza(type:String):Pizza
+}
+
+note right
+    """public Pizza createPizza(String type) {
+    Pizza pizza=null;
+    if(type.equals("cheese"))
+        pizza=new CheesePizza();
+    else if(type.equals("pepperoni"))
+        pizza=new PepperoniPizza();
+    else if(type.equals("clam"))
+        pizza=new ClamPizza();
+    else if(type.equals("veggie"))
+        pizza=new VeggiePizza();
+    return pizza}"""
+end note
+
+//그러면 이미 cheesePizza 클래스를 만들어 놓고 저 때 불러오는 건지?
+
+
+
+
+
+
+
+
+
