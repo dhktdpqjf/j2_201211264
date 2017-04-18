@@ -1,0 +1,92 @@
+
+자바 io
+ 1. 바이트로? 텍스트로?
+ 2. 바이트면 스트림으로. 텍스트는 리더와 라이터 방식으로 읽고 씀
+
+
+//닥터자바 인터랙션창
+System.getProperty("user.home")
+"C:\Users\user"
+> System.getProperty("file.separator")
+"\"
+> System.out.println(System.getProperty("file.separator"))
+\
+
+
+> System.out.println(System.getProperty("user.dir"))
+C:\Users\user\code\j2_201211264
+> System.out.println(System.getProperty("user.home"))
+C:\Users\user
+
+
+>import java.io.File;
+> String cwd = new java.io.File(".").getCanonicalPath() //그냥 절대경로를 구하면 두개가 나올 수도 있음.but,canonicalpath는 유니크한 절대경로. 안전함. 
+> cwd
+"C:\Users\user\code\j2_201211264"
+
+//여기까지는 getProperty를 이용한 자바의 환경변수
+
+
+>System.out.println(System.getenv()); //이걸 치면 운영체제의 환경변수가 나옴
+
+> System.out.println(System.getenv("Path"));//이걸 치면 패스만 나옴
+
+
+//cmd창에서 파일에 입력, 생성하기
+
+echo "hello" > hello.txt //echo명령어는 화면에 출력해주는 건데, 부등호를 넣어서 파일로 보내라고 함
+type hello.txt //파일 내용 보고 싶을 때
+echo "hello again" >> hello.txt //append 시켜주는 거. 부등호 두 개 주의
+
+//다시 닥터자바 interaction 창
+> cwd
+"C:\Users\user\code\j2_201211264"
+> File readme = new File(cwd,"hello.txt");
+> readme
+C:\Users\user\code\j2_201211264\hello.txt
+
+
+>readme.read()
+Static Error: No method in File has name 'read' //readme는 File객체이므로 read()가 없음. 
+
+> System.out.println(readme.canExecute()); //canExecute()가 있음
+true
+> System.out.println(readme.isFile()); //isFile도 있음
+true
+
+
+//FileInputStream으로 읽기
+> FileInputStream isReadme = new FileInputStream(readme); //파일 객체인 readme를 넣음. 생성자에 파일을 넣고 인풋스트림 생성
+> System.out.println((char)isReadme.read());
+> System.out.println((char)isReadme.read());
+> System.out.println((char)isReadme.read()); //계속 하면 한글자씩 계속 나옴. 포인터처럼. 다시 되돌아가지는 않음
+
+
+//BufferedInputStream으로 읽기
+> BufferedInputStream bs = new BufferedInputStream(isReadme); //안에 인풋스트림인 isReadme를 넣음
+> System.out.println((char)bs.read());
+> System.out.println((char)bs.read());
+> System.out.println((char)bs.read());
+
+
+//fileReader로 읽기
+> import java.io.FileReader;
+> FileReader fs = new FileReader(readme);
+> import java.io.BufferedReader;
+> BufferedReader br = new BufferedReader(fs);
+> br.readLine()
+""hello" "
+
+
+
+> import java.io.FileWriter;
+> import java.io.PrintWriter;
+> PrintWriter pw = new PrintWriter(new FileWriter("printhello.txt"));
+> pw.printf("hello %s","bbb"); //명령어 print가 아니라 printf 주의
+> pw.close() 
+
+//이렇게 하고 cmd창에서 dir하면 printhello.txt가 생김. type printhello.txt 치면 안에 내용이 나옴. 입력했던 내용
+
+
+
+
