@@ -1,4 +1,14 @@
-+abstract class PizzaStore {
+
+factory method - 대응관계일 때 많이 씀.
+
+*factory pattern 설명하는 법 *
+	객체 생성을 은닉하는 것.
+	File f = new File() x
+	File f = open() o
+ 이게 factory pattern 인데 세 가지 방법이 있다. simple factory, factory method는 객체생성할 때 abstract 쓰는 것, abstract factory method는 아직 안 함 
+
+
+abstract class PizzaStore {
   -{abstract}createPizza(String):Pizza //abstract method는 {}에 넣어줘야 함. 그러면 그림에 italic 채로 들어감
   +orderPizza(String):Pizza
 }
@@ -23,7 +33,32 @@ PizzaStore <|-- ChicagoPizzaStore //얘네가 상속
 
 Pizza <|--ChicagoStyle\nPizza // \n쓰면 개행
 
+
 + public
 # protected
 - private
 ~ package
+
+
+
+PizzaStore s = new NYPizzaStore(); //왼쪽에는 부모 오른쪽에는 자식(=programming to abstraction). 부모는 고정. 자식은 변동
+					//추상클래스를 가지고 프로그래밍한다. 메소드는 부모꺼를 쓸 거니까.
+
+
+
+dr.java
+
+
+> import headfirst.factory.pizzafm.*;
+> PizzaStore s = new NYPizzaStore();
+> s.orderPizza("cheese");
+Preparing NY Style Sauce and Cheese Pizza
+Baking NY Style Sauce and Cheese Pizza
+Cutting NY Style Sauce and Cheese Pizza
+Boxing NY Style Sauce and Cheese Pizza
+
+
+
+
+
+
