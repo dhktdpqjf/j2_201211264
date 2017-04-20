@@ -2,7 +2,8 @@
 classes\
 lib\
 
+*.class
 
+# Package Files #
 *.java~
 *.jar
-*.class
