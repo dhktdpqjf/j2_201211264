@@ -1,0 +1,38 @@
+ADDRESSBOOK PROJECT
+
+
+<시나리오>
+
+
+1. 학번, 이름, 전화번호, 이메일 입력 *학번은 NOT NULL제약조건이므로, 학번이 null일 경우 알림창 띄우기
+
+2. 데이터 불러오기  
+
+3. 데이터 학번으로 검색  *리스트에 없는 학번일 시에는 알림창. 학번을 입력하지 않았을 경우 알림창 띄우기
+
+4. 데이터 수정  *리스트에 없는 학번일 시에는 알림창. 학번을 입력하지 않았을 경우 알림창 띄우기
+
+5. 데이터 삭제 -> 아이디로 삭제.
+
+
+<database description>
+
+CREATE TABLE addressbook(name varchar(255) NOT NULL, id int(64),
+num varchar(255) , email varchar(255));
+
+
+
+<Class>
+
+-ConnectionFactory : singleton 패턴 이용
+-DAOImpl, PersonDAO : Dao사용. insert, update, select, delete 함수 
+-Command, findAllCommand, findByIdCommand, SimpleRemoteControl : Command 패턴 이용
+-findAllCommand : iterator 이용
+-jdbc 이용
+
+
+
+*부족한점*
+-예외처리 -> 학번이 없을 경우 새로 입력받는 알림창에서 취소버튼에 대한 부분을 예외처리 하지 못함
+
+
