@@ -1,4 +1,4 @@
-package com.sd.dao.v2;
+package com.sd.address.v1;
 import java.util.List;
 import java.util.Iterator;
 import javax.swing.*;
@@ -17,7 +17,7 @@ public class findByIdCommand implements Command{
       person = p.findById(myId); 
       
       if(person == null)
-        JOptionPane.showMessageDialog(null,"°Ë»öÇÒ ¾ÆÀÌµğ°¡ ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+        JOptionPane.showMessageDialog(null,"ê²€ìƒ‰í•  ì•„ì´ë””ê°€ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
       else
         System.out.println(person.toString());
     }
