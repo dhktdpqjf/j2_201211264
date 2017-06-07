@@ -1,4 +1,4 @@
-package com.sd.dao.v2;
+package com.sd.address.v1;
 
 public class PersonVO {
     private String name;
