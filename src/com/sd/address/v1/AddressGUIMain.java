@@ -1,4 +1,4 @@
-package com.sd.dao.v2;
+package com.sd.address.v1;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,16 +44,16 @@ import java.util.Iterator;
        f.getContentPane().add(panel,"North"); 
        f.getContentPane().add(panel2,"South"); 
        
-       JLabel label1 = new JLabel("ÀÌ¸§"); 
-       JLabel label2 = new JLabel("ÀüÈ­¹øÈ£"); 
-       JLabel label3 = new JLabel("ÇĞ¹ø"); 
-       JLabel label4 = new JLabel("ÀÌ¸ŞÀÏ"); 
+       JLabel label1 = new JLabel("ì´ë¦„"); 
+       JLabel label2 = new JLabel("ì „í™”ë²ˆí˜¸"); 
+       JLabel label3 = new JLabel("í•™ë²ˆ"); 
+       JLabel label4 = new JLabel("ì´ë©”ì¼"); 
        
-       b1 = new JButton("µî·Ï"); 
-       b2 = new JButton("ºÒ·¯¿À±â");
-       b3 = new JButton("ÇĞ¹øÀ¸·Î °Ë»ö");
-       b4 = new JButton("¼öÁ¤"); 
-       b5 = new JButton("»èÁ¦"); 
+       b1 = new JButton("ë“±ë¡"); 
+       b2 = new JButton("ë¶ˆëŸ¬ì˜¤ê¸°");
+       b3 = new JButton("í•™ë²ˆìœ¼ë¡œ ê²€ìƒ‰");
+       b4 = new JButton("ìˆ˜ì •"); 
+       b5 = new JButton("ì‚­ì œ"); 
        
        b1.addActionListener(this); 
        b2.addActionListener(this); 
@@ -86,7 +86,7 @@ import java.util.Iterator;
        personDAOImpl = new PersonDAOImpl();
        person = new PersonVO();
        if(id.getText().equals("")){
-           myId = Integer.parseInt(JOptionPane.showInputDialog(null, "¹İµå½Ã ÀÔ·ÂÇØ¾ßÇÕ´Ï´Ù."));
+           myId = Integer.parseInt(JOptionPane.showInputDialog(null, "ë°˜ë“œì‹œ ì…ë ¥í•´ì•¼í•©ë‹ˆë‹¤."));
            while(personDAOImpl.checkId(myId))
              myId = Integer.parseInt(JOptionPane.showInputDialog(null, warning));
          }else {
@@ -100,7 +100,7 @@ import java.util.Iterator;
        personDAOImpl = new PersonDAOImpl();
        person = new PersonVO();
        if(id.getText().equals("")){
-           myId = Integer.parseInt(JOptionPane.showInputDialog(null, "¹İµå½Ã ÀÔ·ÂÇØ¾ßÇÕ´Ï´Ù."));
+           myId = Integer.parseInt(JOptionPane.showInputDialog(null, "ë°˜ë“œì‹œ ì…ë ¥í•´ì•¼í•©ë‹ˆë‹¤."));
            while(!personDAOImpl.checkId(myId))
              myId = Integer.parseInt(JOptionPane.showInputDialog(null, warning));
          }else {
@@ -114,12 +114,12 @@ import java.util.Iterator;
     
      public void actionPerformed(ActionEvent e) { 
        if(e.getSource() == b1){           
-         /*µî·ÏÇÏ±â
-         <±â´É>
-         ¾ÆÀÌµğ´Â not null ¿É¼ÇÀÌ±â ¶§¹®¿¡ ¹ÌÀÔ·Â ½Ã °æ°í
-         Áßº¹µÈ ¾ÆÀÌµğ°¡ Á¸ÀçÇÏ¸é °æ°í
+         /*ë“±ë¡í•˜ê¸°
+         <ê¸°ëŠ¥>
+         ì•„ì´ë””ëŠ” not null ì˜µì…˜ì´ê¸° ë•Œë¬¸ì— ë¯¸ì…ë ¥ ì‹œ ê²½ê³ 
+         ì¤‘ë³µëœ ì•„ì´ë””ê°€ ì¡´ì¬í•˜ë©´ ê²½ê³ 
            */
-         warning = "ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµğÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.";
+         warning = "ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.";
          findId();
          
          myName = "" + name.getText(); 
@@ -137,10 +137,10 @@ import java.util.Iterator;
          id.setText(""); 
          email.setText("");   
          
-         System.out.println("µî·ÏµÇ½À´Ï´Ù.");     
+         System.out.println("ë“±ë¡ë˜ìŠµë‹ˆë‹¤.");     
          
        }else if(e.getSource() == b2){ 
-         //ÀüÃ¼ÀÚ·á ºÒ·¯¿À±â
+         //ì „ì²´ìë£Œ ë¶ˆëŸ¬ì˜¤ê¸°
          System.out.println("---------------------------------LIST------------------------------------");
          personDAOImpl = new PersonDAOImpl();
          findAllCommand allCommand = new findAllCommand(personDAOImpl);
@@ -149,13 +149,13 @@ import java.util.Iterator;
          System.out.println("----------------------------------------------------------------------------");
                   
        }else if(e.getSource() == b3){ 
-         /* id·Î °Ë»ö   
-          <±â´É>
-          Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÏ ½Ã ¾Ë¸²Ã¢
+         /* idë¡œ ê²€ìƒ‰   
+          <ê¸°ëŠ¥>
+          ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””ì¼ ì‹œ ì•Œë¦¼ì°½
            */
          
          if(id.getText().equals("")){
-           myId = Integer.parseInt(JOptionPane.showInputDialog(null, "ÇĞ¹øÀ» ÀÔ·ÂÇÏ¼¼¿ä."));
+           myId = Integer.parseInt(JOptionPane.showInputDialog(null, "í•™ë²ˆì„ ì…ë ¥í•˜ì„¸ìš”."));
          }  else {
            myId = Integer.parseInt(id.getText());
          }
@@ -167,13 +167,13 @@ import java.util.Iterator;
                 
          
        }else if(e.getSource() == b4){ 
-         /* ¼öÁ¤
-         ÀÔ·Â¹ŞÀº ¾ÆÀÌµğ¿¡ µû¶ó ¼öÁ¤. 
-         <±â´É>
-         ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏÁö ¾Ê¾ÒÀ» ½Ã¿¡ °æ°í ¸Ş½ÃÁö.
-         µî·ÏµÇÁö ¾ÊÀº ¾ÆÀÌµğÀÏ ½Ã¿¡ ¾ø´Â ¾ÆÀÌµğ¶ó°í °æ°í¸Ş½ÃÁö
+         /* ìˆ˜ì •
+         ì…ë ¥ë°›ì€ ì•„ì´ë””ì— ë”°ë¼ ìˆ˜ì •. 
+         <ê¸°ëŠ¥>
+         ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì§€ ì•Šì•˜ì„ ì‹œì— ê²½ê³  ë©”ì‹œì§€.
+         ë“±ë¡ë˜ì§€ ì•Šì€ ì•„ì´ë””ì¼ ì‹œì— ì—†ëŠ” ì•„ì´ë””ë¼ê³  ê²½ê³ ë©”ì‹œì§€
          */
-         warning = "¼öÁ¤ÇÒ ¾ÆÀÌµğ°¡ ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.";
+         warning = "ìˆ˜ì •í•  ì•„ì´ë””ê°€ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.";
          findUpdateId();
          
          myName = "(updated)" + name.getText(); 
@@ -187,14 +187,14 @@ import java.util.Iterator;
          
          personDAOImpl.update(person);
          
-         //System.out.println("¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+         //System.out.println("ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
         
        }else {
-        /*»èÁ¦         
-        <¿¹¿ÜÃ³¸®>
-          Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÏ ½Ã¿¡ °æ°íÃ¢
+        /*ì‚­ì œ         
+        <ì˜ˆì™¸ì²˜ë¦¬>
+          ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””ì¼ ì‹œì— ê²½ê³ ì°½
         */
-         warning = "»èÁ¦ÇÒ ¾ÆÀÌµğ°¡ ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.";
+         warning = "ì‚­ì œí•  ì•„ì´ë””ê°€ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.";
          findUpdateId();
          
          personDAOImpl.delete(myId);
