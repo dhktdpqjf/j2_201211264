@@ -1,5 +1,4 @@
-package com.sd.dao.v2;
-
+package com.sd.address.v1;
 import java.util.List;
 
 public interface PersonDAO {
