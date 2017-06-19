@@ -7,6 +7,6 @@ public class ChocolateController{
     boiler.boil();
     boiler.drain();
     
-    ChocolateBoiler boiler2 = ChocolateBoiler.getInstance();
+    //ChocolateBoiler boiler2 = ChocolateBoiler.getInstance();
   }
 }

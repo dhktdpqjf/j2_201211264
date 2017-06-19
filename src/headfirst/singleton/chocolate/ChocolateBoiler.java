@@ -21,20 +21,21 @@ public class ChocolateBoiler{
   
   public void fill(){
     if(isEmpty()){
+      System.out.println("empty? "+empty +" boiled?" +boiled);      
       empty = false;
       boiled = false;
-      //System.out.println("empty? "+empty +" boiled?" +boiled);
+      System.out.println("Now.. empty? "+empty +" boiled?" +boiled);
     }
   }
   
   public void drain(){
-    if(isEmpty() && isBoiled())
+    if(!isEmpty() && isBoiled())
       empty = true;
     System.out.println("draining...");
   }
   
   public void boil(){
-    if(isEmpty() &&isBoiled())
+    if(!isEmpty() && !isBoiled())
       boiled = true;
   }
   
