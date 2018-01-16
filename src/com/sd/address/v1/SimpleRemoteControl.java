@@ -1,4 +1,4 @@
-package com.sd.address.v1;
+package com.sd.dao.v2;
 
 import java.util.*;
 

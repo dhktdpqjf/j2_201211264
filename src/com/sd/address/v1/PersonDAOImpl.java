@@ -1,4 +1,4 @@
-package com.sd.address.v1;
+package com.sd.dao.v2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,7 +24,7 @@ public class PersonDAOImpl implements PersonDAO {
         pstmt = conn.prepareStatement("SELECT * FROM addressbook WHERE id = ?");
         pstmt.setInt(1, id);
         rs = pstmt.executeQuery();
-        if(rs.next()) //idê°€ ìˆìœ¼ë©´ true
+        if(rs.next()) //id°¡ ÀÖÀ¸¸é true
           check = true;
         else
           check = false;
@@ -80,7 +80,7 @@ public class PersonDAOImpl implements PersonDAO {
         try {
             pstmt = conn.prepareStatement("SELECT * FROM addressbook WHERE id=?");
             pstmt.setInt(1, id);
-            System.out.println("--------------------í•™ë²ˆ "+id+" ê²€ìƒ‰------------------------");
+            System.out.println("--------------------ÇĞ¹ø "+id+" °Ë»ö------------------------");
             rs = pstmt.executeQuery();
             if(rs.next()) {
                 person = new PersonVO();
@@ -89,7 +89,7 @@ public class PersonDAOImpl implements PersonDAO {
                 person.setId(rs.getInt("id"));
                 person.setEmail(rs.getString("email"));            
             }else{
-              System.out.println("ì°¾ì„ ìˆ˜ ì—†ìŒ");
+              System.out.println("Ã£À» ¼ö ¾øÀ½");
             }
            
         } catch (SQLException e) {
@@ -108,9 +108,9 @@ public class PersonDAOImpl implements PersonDAO {
             pstmt.setInt(4, person.getId());            
             int row = pstmt.executeUpdate();
             if(row == 0)
-              System.out.println("Idê°€ ë”ì´ìƒ ì¡´ì¬í•˜ì§€ì•ŠìŠµë‹ˆë‹¤.");
+              System.out.println("Id°¡ ´õÀÌ»ó Á¸ÀçÇÏÁö¾Ê½À´Ï´Ù.");
             else
-              System.out.println("ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+              System.out.println("¼öÁ¤µÇ¾ú½À´Ï´Ù.");
         } catch (SQLException e) {
             System.out.println("SQLException error");
         } catch (Exception e){
@@ -124,9 +124,9 @@ public class PersonDAOImpl implements PersonDAO {
             pstmt.setInt(1, id);
             int rows=pstmt.executeUpdate();
             if (rows == 0) {  
-              System.out.println("Id "+id+" ê°€ ì¡´ì¬í•˜ì§€ì•ŠìŠµë‹ˆë‹¤.");
+              System.out.println("Id "+id+" °¡ Á¸ÀçÇÏÁö¾Ê½À´Ï´Ù.");
             } else if (rows > 0) {  
-              System.out.println("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+              System.out.println("»èÁ¦ µÇ¾ú½À´Ï´Ù.");
             } 
         } catch (SQLException e) {
             e.printStackTrace();

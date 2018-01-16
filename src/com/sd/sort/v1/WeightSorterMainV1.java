@@ -8,12 +8,12 @@ public class WeightSorterMainV1 {
         weights[1]=new Weight(40);
         weights[2]=new Weight(70);
         //Arrays.sort(weights);
- //?¨ª¨¬¨ö
- for(Weight w : weights){
-  //weights[i] = new Weight(i*50+25);
-  
-  System.out.println(w.compareTo(weights[2]));
- }
+	//ÇØº½
+	for(Weight w : weights){
+		//weights[i] = new Weight(i*50+25);
+		
+		System.out.println(w.compareTo(weights[2]));
+	}
 
 
         
