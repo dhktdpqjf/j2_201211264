@@ -1,0 +1,68 @@
+
+
+<Planttext>
+
+//singleton 로직 생김새
+
+class Singleton {
+    -static instance:Singleton //getInstance했을 때 없으면 Instance에서만들어야 하기 때문에 똑같이 static. 
+			//근데 아무나 막 만들면 안되니까 protected
+    -Singleton():void //자신만 호출할 수 있도록 protected
+    +static getInstance():Singleton //객체를 안 만듥 호출하려면 static
+}
+
+
+
+<dr.java>
+
+//초콜릿보일러  코드
+
+package headfirst.singleton.chocolate;
+
+public class ChocolateBoiler{  
+  private boolean empty;
+  private boolean boiled;
+  private static ChocolateBoiler uniqueInstance;
+  static int numCalled=0; //static함수인 getInstance에서 쓰기 때문에 이 변수값도 static이어야 함.
+ 
+  private ChocolateBoiler(){
+    empty = true;
+    boiled = false;
+  }
+  
+  public static ChocolateBoiler getInstance() {
+    if(uniqueInstance == null){
+      uniqueInstance = new ChocolateBoiler();
+    }
+    System.out.println("number called : "+numCalled++);
+    return uniqueInstance;        
+  }
+  
+  public void fill(){
+    if(isEmpty()){
+      empty = false;
+      boiled = false;
+      System.out.println("empty? "+empty +" boiled?" +boiled);
+    }
+  }
+  
+  public boolean isEmpty(){
+    return empty;
+  }  
+}
+
+
+
+//interactions
+
+> import headfirst.singleton.chocolate.*;
+> ChocolateBoiler boiler = ChocolateBoiler.getInstance()
+number called : 0
+> boiler.fill()
+empty? false boiled?false
+> ChocolateBoiler boiler2 = ChocolateBoiler.getInstance()
+number called : 1 //static이 의미하는 것: 객체를 새로 만들어도 변수의 값이 초기화되지 않고 그냥 증가하는 것을 볼 수 있다.
+ 
+
+
+

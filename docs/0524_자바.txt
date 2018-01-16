@@ -1,0 +1,102 @@
+//iterator 패턴은 behavioral pattern이기 때문에 흐름대로 써야함.
+
+
+
+*-> 블랙다이아몬드는 의미가 있음. 생성자 안에 넣어놓고
+o-> 와잇다이아몬드는 생성자안에 넣지않음
+
+
+
+Planttext.com
+
+class MenuItem
+class Menu
+Menu *-> MenuItem
+
+//menuitem이 leaf가 되고, menu가 composite이 됨. 트리구조처럼
+
+
+class Component
+class Leaf
+class Composite
+Composite o--> Component
+Component <|-- Composite
+Component <|-- Leaf
+interface Iterator{
+    hasNext():boolean
+    next():Object
+}
+Iterator <|.. DinerMenuIterator
+Iterator <|.. PancakeHouseMenuIterator
+Composite ..> CompositeIterator
+Iterator <|.. CompositeIterator
+class DinerMenuIterator{
+
+    -items:MenuItem[]
+    -position:int
+    DinerMenuIterator(MenuItem[])
+    hasNext():boolean
+    next():Object
+}
+class DinerMenu{
+    items:MenuItem[]
+    +createIterator():Iterator
+}
+
+DinerMenu ..> DinerMenuIterator
+
+
+
+//Composite = dinermenu
+//leaf = menuitem
+//component = menu component 
+
+
+<Interactions>
+
+
+> import headfirst.iterator.dinermerger.after.*
+> DinerMenu d = new DinerMenu()
+> MenuItem[] m = d.getMenuItems()
+> DinerMenuIterator iter = new DinerMenuIterator(m);
+> System.out.println(iter.next());
+Vegetarian BLT, $2.99
+   (Fakin') Bacon with lettuce & tomato on whole wheat
+
+
+근데 이렇게 만들면 안됨. iterator는 직접 생성X
+
+> Iterator iter= d.createIterator(); //이렇게 createIterator를 만들어야 함. 
+
+> System.out.println(iter.next());
+Vegetarian BLT, $2.99
+   (Fakin') Bacon with lettuce & tomato on whole wheat
+> Iterator iter= d.createIterator();
+> System.out.println(iter.next());
+Vegetarian BLT, $2.99
+   (Fakin') Bacon with lettuce & tomato on whole wheat
+> System.out.println(iter.next());
+BLT, $2.99
+   Bacon with lettuce & tomato on whole wheat
+> System.out.println(iter.next());
+Soup of the day, $3.29
+   Soup of the day, with a side of potato salad
+> System.out.println(iter.next());
+java.lang.ArrayIndexOutOfBoundsException: 3
+	at headfirst.iterator.dinermerger.after.DinerMenuIterator.next(DinerMenuIterator.java:19)
+//근데 이렇게 하다가 next가 끝까지 가면 에러가 남. 마치 Stack처럼!! stack에서 pop한 것처럼!!
+//그래서 iterator를 만들 때 데이터가 쓰고 나면 없어지는 건지 남아있는 건지 생각해야 함.
+
+
+mysql->bin->mysqld.exe(이거는 데몬), mysql.exe는 쓰는 거.
+
+환경변수 path에 디렉토리 주소 넣고,
+
+cmd창에서 
+ mysql -u root -p 
+하고 패스워드 입력
+ show databases: 
+
+
+
+

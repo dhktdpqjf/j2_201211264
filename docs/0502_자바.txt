@@ -1,0 +1,70 @@
+
+
+<<Planttext>>
+
+
+interface PizzaIngredientFactory{ //얘가 factory method의 PizzaStore라고 일단보고 시작.
+    +createDough():Dough
+    +createCheese():Cheese
+}
+class ChicagoPizza\nIngredientFactory
+class NYPizza\nIngredientFactory
+PizzaIngredientFactory <|.. ChicagoPizza\nIngredientFactory
+PizzaIngredientFactory <|.. NYPizza\nIngredientFactory
+
+interface Dough
+class ThinDough
+class ThickDough
+Dough <|.. ThickDough
+Dough <|.. ThinDough
+
+interface Cheese
+class MozarellaCheese
+class ReggianoCheese
+Cheese <|.. MozarellaCheese
+Cheese <|.. ReggianoCheese
+
+ChicagoPizza\nIngredientFactory ..> Dough
+ChicagoPizza\nIngredientFactory ..> Cheese
+NYPizza\nIngredientFactory ..>Dough
+NYPizza\nIngredientFactory ..>Cheese
+
+abstract class Pizza {
+    String name; 
+    Dough dough;
+    Cheese cheese;
+
+    +{abstract}prepare():void
+    void bake()
+    void cut()
+    void box()
+    void setName(String name)
+    String getName()
+    +String toString()
+}
+
+class CheesePizza{
+    inFactory:PizzaIngredientFactory
+    +CheesePizza(PizzaIngredientFactory)
+    +prepare():void
+}
+Pizza <|-- CheesePizza 
+CheesePizza -->PizzaIngredientFactory 
+
+// 콜할 때, 전화번호로 생각하자면..
+// --> phone으로 번호 기억 : 메모리 차지. 더 기억이 오래 감
+// ..> 종이에다가 번호 기억 : 메모리 덜 차지.	
+
+abstract class PizzaStore{
+    +{abstract}createPizza(String item):Pizza
+    +orderPizza(String type):Pizza
+}
+
+PizzaStore <|--NYPizzaStore
+PizzaStore <|--ChicagoPizzaStore
+ChicagoPizzaStore ..>PizzaIngredientFactory
+NYPizzaStore ..>PizzaIngredientFactory
+
+
+
+

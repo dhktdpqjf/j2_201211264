@@ -1,0 +1,144 @@
+
+
+
+
+
+
+업무와 데이터 2계층을 분리하고, 서로 그 상태를 동일하게 유지persistence하게 된다.
+**persistence 중요
+
+
+
+
+Properties
+비밀번호는 properties에 저장하여 사용한다.
+USER=
+PASSWORD=
+//URL= 이거는 nbviewer에서 sql부분에 4단계 쯤에 많이있음
+
+
+**mysql connector zip이랑 jar를 내 코드 디렉토리의 lib에 복사해놔야 함.
+
+
+
+javadoc Connection
+javadoc DriverManager -> 네 번째 void Connection 함수를 씀
+javadoc Statement -> execute, update, 등의 함수를 씀,resultSet
+
+
+//cmd창
+create datatbase test;
+use test;
+show tables;
+describe persons;
+
+
+0531
+
+
+//컴파일할 때
+
+javac -d classes -sourcepath src\ src\com\sd\v0\daoMainV0.java
+java -cp classes\;lib\mysql-connec어쩌구탭키누르면됨 com.sd.dao.v0.DaoMainV0
+
+
+CREATE TABLE persons(id int(64) NOT NULL AUTO_INCREMENT,
+name varchar(255) NOT NULL, address varchar(255) NOT NULL, UNIQUE (id));
+
+
+
+
+//google statement javadoc
+
+int형으로 반환 몇 줄이 업데이트 되었는지 executeUpdate(String sql)  -이게 dml인지 ddl인지 알아야함.
+
+
+<planttext>
+
+
+class Person //Person을 DTO 또는 VO라고 함 Value Object
+interface DAO{ //DAO는 보통 함수를 여러개 가짐
+	insert()
+	select() -> findAll 또는 findById 로 바꿔쓰기도 함
+	update()
+	delete()  //얘네는 CRUD라고도 함. create, remove... 줄임말
+}
+
+
+
+//제대로 한 거
+
+class PersonVO //이제 코딩을 할 때는 VO가 안 바뀌는 방식. 그래서 저장하는 방식을 DAO로 분리해서 만들면됨
+interface DAO{ 
+	+insert(p:PersonVO):void
+	+findAll:List //리턴은 리스트이다. 여러개가 나오니까 또는 Composite으로 나옴
+	+findById(id:int):Person
+	+update(p:Person):void
+	+delete(id:int):void
+	+delete(p:Person):void 
+}
+
+DAO -left-> PersonVO
+class DAOImpl //DAOImpl은 DAO를 구현하는 방식
+DAO <|..DAOImpl
+
+
+
+//v1 Person.java 만들고 난 다음에 interactions
+
+
+> import java.util.ArrayList;
+> import java.util.List;
+> List a = new List();
+Static Error: Cannot construct a raw List: a concrete class is required
+  //왜 안 되나?  List 는 interface이기 때문에 클래스같은 생성이 X
+
+> List a = new ArrayList();
+> import com.sd.dao.v1.*;
+> Person p1 = new Person(1,"v1-1");
+> a.add(p1);
+
+  //이렇게 백엔드에 파일이 올지 데이터베이스가 올지 모르기 때문에 DAOImpl에 방식을 분류해서 넣어놓겠다!!
+
+
+
+
+
+
+
+//impl까지 만든 다음
+
+> import com.sd.dao.v1.*;
+> PersonDao pDao = new PersonDaoImpl();
+>  pDao.insert(new Person(1,"s"));
+> pDao.insert(new Person(2,"zzz"));
+> pDao.insert(new Person(3,"q"));
+> for(Person p1:pDao.findAll()){
+System.out.println(p1.getId());
+}
+1
+2
+3
+> for(Person p1:pDao.findAll()){
+System.out.println(p1);
+}
+com.sd.dao.v1.Person@30ce1a1d
+com.sd.dao.v1.Person@67a295bf
+com.sd.dao.v1.Person@3f48a133
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
